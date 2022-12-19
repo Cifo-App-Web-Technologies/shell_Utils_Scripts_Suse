@@ -8,6 +8,7 @@
 #Checking the system arquitecture.
 systemArchi=$(unamed -m)
 echo "The system architecture is, '$systemArchi'."
+user=$USER
 
 # make the repos openSUSE-Leap-15.4-1 and repo-update-non-oss active.
 zypper mr -e 1 && zypper mr -e 12
@@ -19,15 +20,15 @@ zypper --gpg-auto-import-keys refresh
 zypper dup --from snappy
 zypper --non-interactive install snapd
 systemctl enable --now snapd
-#sudo systemctl start snapd
+#systemctl start snapd
 systemctl enable --now snapd.apparmor
-#sudo systemctl start snapd.apparmor
+#systemctl start snapd.apparmor
 
-#Microsoft.
-sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
-sudo zypper addrepo https://packages.microsoft.com/yumrepos/vscode vscode
+#Microsoft Repo.
+zypper addrepo https://packages.microsoft.com/yumrepos/vscode vscode
+rpm --import https://packages.microsoft.com/keys/microsoft.asc
 
-#Google.
+#Google Repo.
 zypper addrepo http://dl.google.com/linux/chrome/rpm/stable/x86_64 Google-Chrome
 rpm --import https://dl.google.com/linux/linux_signing_key.pub
 
@@ -116,8 +117,9 @@ addConf_bashrc.sh
 #Edit the terminaor configuration
 termConfigUP.sh
 
+sudo -u $user
 #Link creation to duplicate some important files in a folder to backup and sent to a cloud Repo.
-ln ~/.bashrc ~/shell_Utils_Scripts_Suse/SySBackups/bashrc.bak
+ln /home/$USER/.bashrc /home/$USER/shell_Utils_Scripts_Suse/SySBackups/bashrc.bak
 
 #Git add commit and push the new backup file .bashrc
 #cd shell_Utils_Scripts_Suse
