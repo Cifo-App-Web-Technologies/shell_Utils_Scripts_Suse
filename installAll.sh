@@ -8,10 +8,10 @@
 #Checking the system arquitecture.
 systemArchi=$(unamed -m)
 echo "The system architecture is, '$systemArchi'."
-user=$USER
+#user=$USER
 
 #Switch to root
-sudo -i
+#sudo -i
 
 # make the repos openSUSE-Leap-15.4-1 and repo-update-non-oss active.
 zypper mr -e 1 && zypper mr -e 12

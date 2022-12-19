@@ -28,5 +28,6 @@ export PATH="$PATH:/home/$user/shell_Utils_Scripts_Suse"
 export FPATH="$FPATH:/home/$user/shell_Utils_Scripts_Suse/FuntionShell"
 
 #Starting Installation
+sudo -i
 installAll.sh
 
