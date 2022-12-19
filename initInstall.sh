@@ -9,7 +9,7 @@ zypper install -y git
 
 #Config global info git
 git config --global user.name "alexpicjava"
-git config --global user.mail "alex.pic@gmail.com"
+git config --global user.mail "alex.pic.java@gmail.com"
 
 #Create a local Repo and clone all necessary information to continue with the installation.
 # git clone https://oauth-key-goes-here@github.com/username/repo.git
