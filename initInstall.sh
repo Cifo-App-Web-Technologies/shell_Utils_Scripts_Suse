@@ -2,12 +2,13 @@
 #Be sure you work under root, but be careful.
 
 user=$USER
+inifol=$pwd
 
 #Switch to root
-sudo -i
+#sudo -i
 
 #Install git
-zypper install -y git
+sudo zypper install -y git
 
 #Config global info git
 git config --global user.name "alexpicjava"
