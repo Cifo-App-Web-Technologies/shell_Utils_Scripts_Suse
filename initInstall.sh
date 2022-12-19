@@ -2,7 +2,7 @@
 #Be sure you work under root, but be careful.
 
 #Switch to root
-sudo -i
+#sudo -i
 
 #Install git
 zypper install -y git
@@ -15,7 +15,7 @@ git config --global user.mail "alex.pic@gmail.com"
 # git clone https://oauth-key-goes-here@github.com/username/repo.git
 # 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
 # git clone https://github.com/Cifo-App-Web-Technologies/shell_Utils_Scripts.git /home/$USER/shell_Utils_Scripts
-git clone https://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@github.com/alexpicjava/Cifo-App-Web-Technologies/shell_Utils_Scripts.git /home/$USER/shell_Utils_Scripts
+git clone https://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@github.com/alexpicjava/Cifo-App-Web-Technologies/shell_Utils_Scripts_Suse.git /home/$USER/shell_Utils_Scripts_Suse
 
 #Update the Paths to the system be able to work whit the new folder.
 #PATH
