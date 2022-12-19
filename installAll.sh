@@ -118,7 +118,9 @@ termConfigUP.sh
 
 #Link creation to duplicate some important files in a folder to backup and sent to a cloud Repo.
 ln ~/.bashrc ~/shell_Utils_Scripts_Suse/SySBackups/bashrc.bak
-cd shell_Utils_Scripts_Suse
-git add .
-git commit -m "[ADD] bashrc.bak"
-git push
+
+#Git add commit and push the new backup file .bashrc
+#cd shell_Utils_Scripts_Suse
+#git add .
+#git commit -m "[ADD] bashrc.bak"
+#git push
