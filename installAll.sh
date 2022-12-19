@@ -49,8 +49,7 @@ echo "The tilix version installed is: '$tilixVersion'."
 gitVersion=$(git --version 2> /dev/null)
 echo "The Git version installed is: '$terminatorVersion'."
 
-#Install JDK ver.11 in case is not alreay installed. Java 11 is being installed
-#in OpenSUSE by default.
+#Install JDK ver.11 in case has not been alreay installed. Java 11 is being installed in OpenSUSE by default.
 fileJ=$(readlink -f $(which java))
 if [[ -f "$fileJ" ]]
 then
@@ -67,7 +66,7 @@ echo "The Java version of your system is: '$javaVersion'."
 
 #Install JDK latest version. TO-DO.
 
-#Istall Apache-maven TO-DO.
+#Istall Apache-maven.
 zypper --non-interactive install maven
 mavenVersion=$(maven --version 2> /dev/null)
 echo "The maven version installed is: '$terminatorVersion'."
