@@ -2,13 +2,12 @@
 
 # Shell scrip to install all related programs base on the Linux Opensuse Leap 15.4 distribution and to be
 # used in the Wed App Developer Cifo course. This program has to be executed as $root.
-# IMPORTANT!! The git has to be installed before to execute this script. To do so, execute nextline in the terminal after system inslalation.
+# IMPORTANT!! Git has to be installed before to execute this script. To do so, execute nextline in the terminal after system inslalation.
 # zypper install -y git
 
 #Checking the system arquitecture.
 systemArchi=$(unamed -m)
 echo "The system architecture is, '$systemArchi'."
-#user=$USER
 
 #Switch to root
 #sudo -i
@@ -36,7 +35,7 @@ zypper addrepo http://dl.google.com/linux/chrome/rpm/stable/x86_64 Google-Chrome
 rpm --import https://dl.google.com/linux/linux_signing_key.pub
 
 # Refresh and update all repositories.
-zypper update && zypper refresh
+zypper --non-interactive update && zypper --non-interactive refresh
 
 #Install teminator as the main terminal. This app helps to create diferent windows terminals in the same screen.
 zypper install -y terminator

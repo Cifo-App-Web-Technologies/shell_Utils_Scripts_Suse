@@ -1,3 +1,5 @@
+#--------------NOT USE---------------
+
 #! bin/bash
 
 #Install git
