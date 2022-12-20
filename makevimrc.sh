@@ -1,3 +1,5 @@
+#! bin/bash
+
 echo '" TABLE OF CONTENTS:
 
 " 1. Generic settings
