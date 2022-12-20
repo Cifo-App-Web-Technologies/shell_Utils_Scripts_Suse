@@ -7,6 +7,7 @@
 # --> $export puser=$USER	(This will create a variable $puser)
 # --> $export inifol=$PWD	(This will create a variable $initfol)
 # --> $sudo -E su root		(This will swith to sudo using the $puser enviroment)
+# --> $./initInstall.sh
 
 #Update the Paths to the system be able to work whit the new folder shell_Utils_Scripts_Suse.
 #PATH
