@@ -11,6 +11,7 @@ echo "The system architecture is, '$systemArchi'."
 
 #Switch to root
 #sudo -i
+sudo -E su root
 
 # make the repos openSUSE-Leap-15.4-1 and repo-update-non-oss active.
 zypper mr -e 1 && zypper mr -e 12
@@ -111,6 +112,8 @@ sudo zypper --non-interactive install code
 #Install google chrome.
 zypper --non-interactive install google-chrome-stable
 
+sudo -u $puser
+
 #Create a .vimrc with a personal configuration.
 makevimrc.sh
 #Edit the .bashrc configuration
@@ -118,7 +121,7 @@ addConf_bashrc.sh
 #Edit the terminaor configuration
 termConfigUP.sh
 
-sudo -u $puser
+
 #Link creation to duplicate some important files in a folder to backup and sent to a cloud Repo.
 ln /home/$USER/.bashrc /home/$USER/shell_Utils_Scripts_Suse/SySBackups/bashrc.bak
 
