@@ -119,7 +119,7 @@ addConf_bashrc.sh
 #Edit the terminaor configuration
 termConfigUP.sh
 
-sudo -u $user
+sudo -u $puser
 #Link creation to duplicate some important files in a folder to backup and sent to a cloud Repo.
 ln /home/$USER/.bashrc /home/$USER/shell_Utils_Scripts_Suse/SySBackups/bashrc.bak
 
