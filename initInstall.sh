@@ -17,7 +17,7 @@ export PATH="$PATH:/home/$puser/shell_Utils_Scripts_Suse"
 export FPATH="$FPATH:/home/$puser/shell_Utils_Scripts_Suse/FuntionShell"
 
 #Install git
-zypper install -y gitLS
+zypper install -y git
 
 #Config global info git "EDIT AND USE YOU OWN INFORMATION HERE"
 git config --global user.name "alexpicjava"
