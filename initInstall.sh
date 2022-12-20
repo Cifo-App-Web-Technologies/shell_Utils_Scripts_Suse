@@ -13,7 +13,7 @@ export puser=$USER
 export inifol=$PWD
 
 #Checking the system arquitecture.
-systemArchi=$(unamed -m)
+systemArchi=$(uname -m)
 echo "The system architecture is, '$systemArchi'."
 
 #sudo -E su root
