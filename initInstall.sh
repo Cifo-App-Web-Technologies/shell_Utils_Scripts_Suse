@@ -9,6 +9,10 @@
 # --> $sudo -E su root		(This will swith to sudo using the $puser enviroment)
 # --> $./initInstall.sh
 
+export puser=$USER
+export inifol=$PWD
+#sudo -E su root
+
 #Update the Paths to the system be able to work whit the new folder shell_Utils_Scripts_Suse.
 #PATH
 export PATH="$PATH:/home/$puser/shell_Utils_Scripts_Suse"
@@ -17,7 +21,7 @@ export PATH="$PATH:/home/$puser/shell_Utils_Scripts_Suse"
 export FPATH="$FPATH:/home/$puser/shell_Utils_Scripts_Suse/FuntionShell"
 
 #Install git
-zypper install -y git
+sudo zypper install -y git
 
 #Config global info git "EDIT AND USE YOU OWN INFORMATION HERE"
 git config --global user.name "alexpicjava"
