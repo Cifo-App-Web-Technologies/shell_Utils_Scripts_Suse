@@ -6,8 +6,8 @@
 # zypper install -y git
 
 #Checking the system arquitecture.
-systemArchi=$(unamed -m)
-echo "The system architecture is, '$systemArchi'."
+#systemArchi=$(unamed -m)
+#echo "The system architecture is, '$systemArchi'."
 
 #Switch to root
 #sudo -i

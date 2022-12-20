@@ -11,6 +11,11 @@
 
 export puser=$USER
 export inifol=$PWD
+
+#Checking the system arquitecture.
+systemArchi=$(unamed -m)
+echo "The system architecture is, '$systemArchi'."
+
 #sudo -E su root
 
 #Update the Paths to the system be able to work whit the new folder shell_Utils_Scripts_Suse.
@@ -31,6 +36,9 @@ git config --global user.mail "alex.pic.java@gmail.com"
 # git clone https://oauth-key-goes-here@github.com/username/repo.git
 # key --> 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 --> Ended 01/12/22
 # git clone https://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@github.com/alexpicjava/Cifo-App-Web-Technologies/shell_Utils_Scripts_Suse.git /home/$USER/shell_Utils_Scripts_Suse
+
+su - $puser
+
 git clone https://github.com/Cifo-App-Web-Technologies/shell_Utils_Scripts_Suse.git /home/$puser/shell_Utils_Scripts_Suse
 
 
