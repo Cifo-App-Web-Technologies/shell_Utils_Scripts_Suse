@@ -41,16 +41,14 @@ zypper --non-interactive update && zypper --non-interactive refresh
 #Install teminator as the main terminal. This app helps to create diferent windows terminals in the same screen.
 zypper install -y terminator
 terminatorVersion=$(terminator --version 2> /dev/null)
-echo "The terminator version installed is: '$terminatorVersion'."
+echo "On '$date'. The terminator version installed is: '$terminatorVersion'." >> /home/$USER/install.log
 
 #Install tilix as other good terminal emulator.
 zypper install -y tilix
 tilixVersion=$(tilix --version 2> /dev/null)
 echo "The tilix version installed is: '$tilixVersion'."
 
-#Check the version of the installed Git.
-gitVersion=$(git --version 2> /dev/null)
-echo "The Git version installed is: '$terminatorVersion'."
+
 
 #Install JDK ver.11 in case has not been alreay installed. Java 11 is being installed in OpenSUSE by default.
 fileJ=$(readlink -f $(which java))

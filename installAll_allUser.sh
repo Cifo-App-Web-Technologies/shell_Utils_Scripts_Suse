@@ -2,82 +2,77 @@
 
 # Shell scrip to install all related programs base on the Linux Opensuse Leap 15.4 distribution and to be
 # used in the Wed App Developer Cifo course. This program has to be executed as $root.
-# IMPORTANT!! Git has to be installed before to execute this script. To do so, execute nextline in the terminal after system inslalation.
-# zypper install -y git
-
-#Checking the system arquitecture.
-#systemArchi=$(unamed -m)
-#echo "The system architecture is, '$systemArchi'."
-
-#Switch to root
-#sudo -i
-sudo -E su root
 
 # make the repos openSUSE-Leap-15.4-1 and repo-update-non-oss active.
-zypper mr -e 1 && zypper mr -e 12
+sudo zypper mr -e 1 && zypper mr -e 12
 
 #Install all external and necessary repositories.
 #Snappy for IntellJ idea.
-zypper addrepo --refresh https://download.opensuse.org/repositories/system:/snappy/openSUSE_Leap_15.4 snappyy
-zypper --gpg-auto-import-keys refresh
-zypper dup --from snappy
-zypper --non-interactive install snapd
-systemctl enable --now snapd
+sudo zypper addrepo --refresh https://download.opensuse.org/repositories/system:/snappy/openSUSE_Leap_15.4 snappyy
+sudo zypper --gpg-auto-import-keys refresh
+sudo zypper dup --from snappy
+sudo zypper --non-interactive install snapd
+sudo systemctl enable --now snapd
 #systemctl start snapd
-systemctl enable --now snapd.apparmor
+sudo systemctl enable --now snapd.apparmor
 #systemctl start snapd.apparmor
 
 #Microsoft Repo.
-zypper addrepo https://packages.microsoft.com/yumrepos/vscode vscode
-rpm --import https://packages.microsoft.com/keys/microsoft.asc
+sudo zypper addrepo https://packages.microsoft.com/yumrepos/vscode vscode
+sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
 
 #Google Repo.
-zypper addrepo http://dl.google.com/linux/chrome/rpm/stable/x86_64 Google-Chrome
-rpm --import https://dl.google.com/linux/linux_signing_key.pub
+sudo zypper addrepo http://dl.google.com/linux/chrome/rpm/stable/x86_64 Google-Chrome
+sudo rpm --import https://dl.google.com/linux/linux_signing_key.pub
 
 # Refresh and update all repositories.
-zypper --non-interactive update && zypper --non-interactive refresh
+sudo zypper --non-interactive update && zypper --non-interactive refresh
 
 #Install teminator as the main terminal. This app helps to create diferent windows terminals in the same screen.
-zypper install -y terminator
+sudo zypper install -y terminator
 terminatorVersion=$(terminator --version 2> /dev/null)
-echo "The terminator version installed is: '$terminatorVersion'."
+dateterminator=$(date)
+echo -e "On '$dateterminator'\tThe terminator version installed is: '$terminatorVersion'." >> /home/$USER/install.log
 
 #Install tilix as other good terminal emulator.
-zypper install -y tilix
+sudo zypper install -y tilix
 tilixVersion=$(tilix --version 2> /dev/null)
-echo "The tilix version installed is: '$tilixVersion'."
-
-#Check the version of the installed Git.
-gitVersion=$(git --version 2> /dev/null)
-echo "The Git version installed is: '$terminatorVersion'."
+datetilix=$(date)
+echo -e "On '$datetilix'\tThe tilix version installed is: '$tilixVersion'." >> /home/$USER/install.log
 
 #Install JDK ver.11 in case has not been alreay installed. Java 11 is being installed in OpenSUSE by default.
 fileJ=$(readlink -f $(which java))
 if [[ -f "$fileJ" ]]
 then
-    echo "File '$fileJ' is executable and Java is part of the system"
+    dateJava11=$(date)
+    echo -e "On '$dateJava11'\tThe file '$fileJ' is executable and Java ver.11 is part of the system." >> /home/$USER/install.log
 else
-   zypper install -y java-11-openjdk
+    sudo zypper install -y java-11-openjdk
+    dateJava11=$(date)
+    javaVersion=$(javac --version)
+    echo -e "On '$dateJava11'\tThe Java version JDK installed is '$javaVersion'." >> /home/$USER/install.log
 fi
 
 #Install JDK ver.17 and make it the defaul system version and chose which version run as defoult.
-zypper --non-interactive install java-17-openjdk-devel
-update-alternatives --config java
+sudo zypper --non-interactive install java-17-openjdk-devel
+sudo update-alternatives --config java
 javaVersion=$(javac --version)
-echo "The Java version of your system is: '$javaVersion'."
+dateJava=$(date)
+echo -e "On '$dateJava'\tThe Java version of your system is: '$javaVersion'." >> /home/$USER/install.log
 
 #Install JDK latest version. TO-DO.
 
 #Istall Apache-maven.
-zypper --non-interactive install maven
+sudo zypper --non-interactive install maven
 mavenVersion=$(maven --version 2> /dev/null)
-echo "The maven version installed is: '$terminatorVersion'."
+dateMaven=$(date)
+echo -e "On '$dateMaven'\tThe maven version installed is: '$mavenVersion'." >> /home/$USER/install.log
 
 #Install FlameShot.
-zypper --non-interactive install flameshot
+sudo zypper --non-interactive install flameshot
 flameShotVersion=$(flameshot --version 2> /dev/null)
-echo "The Flameshot version installed is: '$flameshotVersion'."
+dateFlameShot=$(date)
+echo -e "On '$dateFlameShot'\tThe Flameshot version installed is: '$flameShotVersion'." >> /home/$USER/install.log
 
 #Install Quarto.
 wget https://github.com/quarto-dev/quarto-cli/releases/download/v1.2.280/quarto-1.2.280-linux-amd64.tar.gz
@@ -85,15 +80,17 @@ tar -xvzf quarto-1.2.280-linux-amd64.tar.gz -C /opt
 ln -s /opt/quarto-1.2.280/bin/quarto /usr/local/bin/quarto
 rm -rf quarto-1.2.280-linux-amd64.tar.gz
 quartoVersion=$(quarto --version 2> /dev/null)
-echo "The Quarto version installed is: '$quartoVersion'."
+dateQuarto=$(date)
+echo -e "On '$dateQuarto'\tThe Quarto version installed is: '$quartoVersion'." >> /home/$USER/install.log
 
 #Install Docker && Docker Desktop.
-zypper --non-interactive install docker
+sudo zypper --non-interactive install docker
 dockerVersion=$(docker --version 2> /dev/null)
-echo "The Docker version installed is: '$dockerVersion'."
+dateDocker=$(date)
+echo -e "On '$dateQuarto'\tThe Docker version installed is: '$dockerVersion'."  >> /home/$USER/install.log
 
 #Install IntellJ Idea through the snap app.
-snap install intellij-idea-ultimate --classic
+sudo snap install intellij-idea-ultimate --classic
 
 #Alternative source to install IntelliJ idea
 #https://tutorialforlinux.com/2019/05/08/how-to-install-intellij-idea-on-opensuse-15-leap-gnu-linux/
@@ -108,11 +105,15 @@ snap install intellij-idea-ultimate --classic
 
 #Install Visual Code.
 sudo zypper --non-interactive install code
+codeVersion=$(code --version 2> /dev/null)
+dateCode=$(date)
+echo -e "On '$dateCode'\tThe Docker version installed is: '$codeVersion'."  >> /home/$USER/install.log
 
 #Install google chrome.
-zypper --non-interactive install google-chrome-stable
-
-sudo -u $puser
+sudo zypper --non-interactive install google-chrome-stable
+googleVersion=$(google-chrome-stable --version 2> /dev/null)
+dateGoogle=$(date)
+echo -e "On '$dateGoogle'\tThe Docker version installed is: '$googleVersion'."  >> /home/$USER/install.log
 
 #Create a .vimrc with a personal configuration.
 makevimrc.sh

@@ -4,18 +4,15 @@
 #--IMPORTANT-- follow next steps before excute this scrip:
 # copy this file (initInstall.sh) in /Home/$USER
 
-# 1- As you user inthe terminal type and execute next commands: (Copy and Paste after $)
-# --> $export puser=$USER	(This will create a variable $puser)
-# --> $export inifol=$PWD	(This will create a variable $initfol)
-# --> $sudo -E su root		(This will swith to sudo using the $puser enviroment)
-# --> $./initInstall.sh
-
-# Building a temp file to save all env $USER variable. A file named instemporal would be created in home/user
+# Building a temp file to save all env $USER variable. A file named instemporal.tmp would be created in home/user
 export -p | sed 's/declare -x //' > /home/$USER/instemporal.tmp
 
 #Checking the system arquitecture and initiated a install.log saved in home/user
 systemArchi=$(uname -m)
-echo "The system architecture is, '$systemArchi'." > /home/$USER/install.log
+datelog=$(date)
+echo "INSTALL.LOG created on '$datelog'."> /home/$USER/install.log
+echo "The system architecture is, '$systemArchi'." >> /home/$USER/install.log
+echo "-------------------------------------------" >> /home/$USER/install.log
 
 #ADD the paths to the folder shell_Utils_Scripts_Suse.
 #PATH
@@ -24,13 +21,13 @@ export PATH="$PATH:/home/$USER/shell_Utils_Scripts_Suse"
 #FPATH Fusntions Path
 export FPATH="$FPATH:/home/$USER/shell_Utils_Scripts_Suse/FuntionShell"
 
-#Install git using sudo. Intro password.
+#Install git using sudo. Intro sudo password.
 sudo zypper install -y git
 
 #Check the version of the installed Git.
 gitVersion=$(git --version 2> /dev/null)
-date=$(date)
-echo "On '$date'. The Git version installed is: '$gitVersion'." >> /home/$USER/install.log
+dategit=$(date)
+echo -e "On '$dategit'\tThe Git version installed is: '$gitVersion'." >> /home/$USER/install.log
 
 #Config global info git "EDIT AND USE YOU OWN INFORMATION HERE"
 git config --global user.name "alexpicjava"
