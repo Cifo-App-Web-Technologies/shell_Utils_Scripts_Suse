@@ -42,4 +42,4 @@ git clone https://github.com/Cifo-App-Web-Technologies/shell_Utils_Scripts_Suse.
 
 
 #Starting Installation
-installAll.sh
+installAll_allUsers.sh
