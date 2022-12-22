@@ -4,8 +4,14 @@
 #--IMPORTANT-- follow next steps before excute this scrip:
 # copy this file (initInstall.sh) in /Home/$USER
 
-# Building a temp file to save all env $USER variable. A file named instemporal.tmp would be created in home/user
-export -p | sed 's/declare -x //' > /home/$USER/instemporal.tmp
+# Building a temp file to save all env $USER variable. A file named instemporal.tmp would be created in home/user.
+# ----IMPORTANT----This file creation is necessary to keep all user information and in case of execute the script under a root user.
+# To do so, the double quotes around the command env, ensures that $USER is expanded before sudo is invoked as root abd save
+# all env $USER under root privileges.
+
+# Two optional lines to get the same output.
+# su root -c "export -p | sed 's/declare -x //' > /home/$USER/instemp.tmp"
+su  root -c  "env > /home/$USER/instemp.tmp"
 
 #Checking the system arquitecture and initiated a install.log saved in home/user
 systemArchi=$(uname -m)
@@ -40,6 +46,8 @@ git config --global user.mail "alex.pic.java@gmail.com"
 
 git clone https://github.com/Cifo-App-Web-Technologies/shell_Utils_Scripts_Suse.git /home/$USER/shell_Utils_Scripts_Suse
 
+# Once the repo is installed in your local home route folder, then it is possible to call the next scrip that would 
+# set all the system with all the necessary software to follow the course.
 
 #Starting Installation
 installAll_allUsers.sh

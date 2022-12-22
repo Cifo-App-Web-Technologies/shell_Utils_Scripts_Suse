@@ -27,4 +27,4 @@ echo'
       type = Terminal
       parent = window0
 [plugins]
-' > /home/$puser/.config/terminator/config
+' > /home/$insUSER/.config/terminator/config

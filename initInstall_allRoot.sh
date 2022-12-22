@@ -4,33 +4,39 @@
 #--IMPORTANT-- follow next steps before excute this scrip:
 # copy this file (initInstall.sh) in /Home/$USER
 
-# 1- As you user inthe terminal type and execute next commands: (Copy and Paste after $)
-# --> $export puser=$USER	(This will create a variable $puser)
-# --> $export inifol=$PWD	(This will create a variable $initfol)
-# --> $sudo -E su root		(This will swith to sudo using the $puser enviroment)
-# --> $./initInstall.sh
+# Building a temp file to save all env $USER variable. A file named instemporal.tmp would be created in home/user.
+# ----IMPORTANT----This file creation is necessary to keep all user information and in case of execute the script under a root user.
+# To do so, the double quotes around the command env, ensures that $USER is expanded before sudo is invoked as root abd save
+# all env $USER under root privileges.
 
-# Building a temp file to save all env $USER variable. A file named instemporal would be created in home/user
-export -p | sed 's/declare -x //' > /home/$USER/instemporal.tmp
+# Two optional lines to get the same output.
+# su root -c "export -p | sed 's/declare -x //' > /home/$USER/instemp.tmp"
+su root -c "env > /home/instemp.tmp"
+su -
+export insUSER=$(cat /home/instemp.tmp | grep 'USER' | tr '=' ' ' | awk '{print$2}')
+export insUserFolder=$(cat /home/instemp.tmp | grep 'PWD' | tr '=' ' ' | awk '{print$2}')
 
 #Checking the system arquitecture and initiated a install.log saved in home/user
 systemArchi=$(uname -m)
-echo "The system architecture is, '$systemArchi'." > /home/$USER/install.log
+datelog=$(date)
+echo "INSTALL.LOG created on '$datelog'."> /home/$insUSER/install.log
+echo "The system architecture is, '$systemArchi'." >> /home/$insUSER/install.log
+echo "-------------------------------------------" >> /home/$insUSER/install.log
 
 #ADD the paths to the folder shell_Utils_Scripts_Suse.
 #PATH
-export PATH="$PATH:/home/$USER/shell_Utils_Scripts_Suse"
+export PATH="$PATH:$insUserFolder/shell_Utils_Scripts_Suse"
 
 #FPATH Fusntions Path
-export FPATH="$FPATH:/home/$USER/shell_Utils_Scripts_Suse/FuntionShell"
+export FPATH="$FPATH:$insUserFolder/shell_Utils_Scripts_Suse/FuntionShell"
 
-#Install git using sudo. Intro password.
-sudo zypper install -y git
+#Install git using sudo. Intro sudo password.
+zypper install -y git
 
 #Check the version of the installed Git.
 gitVersion=$(git --version 2> /dev/null)
-date=$(date)
-echo "On '$date'. The Git version installed is: '$gitVersion'." >> /home/$USER/install.log
+dategit=$(date)
+echo -e "On '$dategit'\tThe Git version installed is: '$gitVersion'." >> /home/$insUSER/install.log
 
 #Config global info git "EDIT AND USE YOU OWN INFORMATION HERE"
 git config --global user.name "alexpicjava"
@@ -41,8 +47,10 @@ git config --global user.mail "alex.pic.java@gmail.com"
 # key --> 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 --> Ended 01/12/22
 # git clone https://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@github.com/alexpicjava/Cifo-App-Web-Technologies/shell_Utils_Scripts_Suse.git /home/$USER/shell_Utils_Scripts_Suse
 
-git clone https://github.com/Cifo-App-Web-Technologies/shell_Utils_Scripts_Suse.git /home/$USER/shell_Utils_Scripts_Suse
+git clone https://github.com/Cifo-App-Web-Technologies/shell_Utils_Scripts_Suse.git /home/$insUSER/shell_Utils_Scripts_Suse
 
+# Once the repo is installed in your local home route folder, then it is possible to call the next scrip that would 
+# set all the system with all the necessary software to follow the course.
 
 #Starting Installation
-installAll.sh
+installAll_allRoot.sh

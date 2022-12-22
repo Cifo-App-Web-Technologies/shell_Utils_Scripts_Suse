@@ -37,8 +37,8 @@ alias l='ls-CF'
 
 #Alias Change Shell
 alias chs='cat /etc/shells'
-alias zs='sudo chsh -s /bin/zsh $USER'
-alias bs='sudo chsh -s /bin/bash $USER'
+alias zs='sudo chsh -s /bin/zsh $insUSER'
+alias bs='sudo chsh -s /bin/bash $insUSER'
 
 function parse_git_branch() {
     git branch 2> /dev/null | sed -n -e 's/^\* \(.*\)/[\1]/p'
@@ -57,4 +57,4 @@ function git_branch_name()
 #PROMP
 # export PS1='\[\033[01;32m\]\u@\h\[\033[1;34m\] $XDG_CURRENT_DESKTOP \[\033[0;31m\]\s \[\033[00m\]:\[\033[01;30m\]\w\[\033[1;31m\]$(git_branch_name)\[\033[00m\]\$-> '
 PS1='\[\033[01;32m\]\u@\h\[\033[1;34m\] $XDG_CURRENT_DESKTOP \[\033[0;31m\]\s \[\033[00m\]:\[\033[01;30m\]\w\[\033[1;31m\]$(git_branch_name)\[\033[00m\]\$-> '
-" >> /home/$puser/.bashrc
+" >> /home/$insUSER/.bashrc

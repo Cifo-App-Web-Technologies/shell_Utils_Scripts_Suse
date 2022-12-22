@@ -102,4 +102,4 @@ nnoremap N Nzzzv
 nnoremap * *zzzv
 
 " To close buffers without closing splits
-nnoremap <silent> <C-q> :lclose<bar>b#<bar>bd #<CR>' > ~/.vimrc
+nnoremap <silent> <C-q> :lclose<bar>b#<bar>bd #<CR>' > /home/$USER/.vimrc

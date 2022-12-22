@@ -1,7 +1,8 @@
 #! /bin/bash
 
-# Shell scrip to install all related programs base on the Linux Opensuse Leap 15.4 distribution and to be
-# used in the Wed App Developer Cifo course. This program has to be executed as $root.
+# This is a Shell Scrip to install all related programs base on the Linux Opensuse Leap 15.4 distribution and to be
+# used in the Wed App Developer Cifo course.
+# It is a must that the script initInsta.sh has been executed. This script will executed by the initInstall.sh mentioned. 
 
 # make the repos openSUSE-Leap-15.4-1 and repo-update-non-oss active.
 sudo zypper mr -e 1 && zypper mr -e 12
@@ -53,7 +54,7 @@ else
     echo -e "On '$dateJava11'\tThe Java version JDK installed is '$javaVersion'." >> /home/$USER/install.log
 fi
 
-#Install JDK ver.17 and make it the defaul system version and chose which version run as defoult.
+#Install JDK ver.17 and chose which version run as defoult in my system.
 sudo zypper --non-interactive install java-17-openjdk-devel
 sudo update-alternatives --config java
 javaVersion=$(javac --version)
